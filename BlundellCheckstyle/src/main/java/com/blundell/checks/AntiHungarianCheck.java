@@ -8,6 +8,8 @@ public class AntiHungarianCheck extends Check {
     		                                "Don't prefix member variables with 'm'. " +
     		                                "Use your IDE's shiny colors. Culprit was: ";
 
+    private final HungarianStyleDetector detector = new HungarianStyleDetector();
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
@@ -15,45 +17,23 @@ public class AntiHungarianCheck extends Check {
 
     @Override
     public void visitToken(DetailAST aAST) {
-        if (itsAFieldVariable(aAST)) {
-            DetailAST identifier = aAST.findFirstToken(TokenTypes.IDENT);
-            String varName = identifier.toString();
-
-            if (memberVariableIsPrefixedWithTheHungarianNotationForMemberVariable(varName)) {
-                log(aAST.getLineNo(), CATCH_MSG + varName);
-            }
+        String variableName = findVariableName(aAST);
+        if (itsAFieldVariable(aAST) && detector.detectsHungarianNotation(variableName)) {
+            reportStyleError(aAST, variableName);
         }
+    }
+
+    private String findVariableName(DetailAST aAST) {
+        DetailAST identifier = aAST.findFirstToken(TokenTypes.IDENT);
+        return identifier.toString();
     }
 
     private boolean itsAFieldVariable(DetailAST aAST) {
         return aAST.getParent().getType() == TokenTypes.OBJBLOCK;
     }
 
-    /**
-     * Someone please replace this with a sexy reg ex
-     * @param varName variable under test
-     * @return true if the variable is prefixed with a lower case m followed by camel case
-     */
-    private boolean memberVariableIsPrefixedWithTheHungarianNotationForMemberVariable(String varName) {
-        return varName.startsWith("m") && isVaguelyCamelCase(varName);
-    }
-
-    private boolean isVaguelyCamelCase(String varName) {
-        if(allLowerCase(varName)){
-            return false;
-        }
-
-        if(varName.length() == 1){
-            return false;
-        }
-
-        return Character.isUpperCase(varName.charAt(1));
-    }
-
-    private boolean allLowerCase(String varName) {
-        String varNameAsLower = varName.toLowerCase();
-
-        return varName.equals(varNameAsLower);
+    private void reportStyleError(DetailAST aAST, String variableName) {
+        log(aAST.getLineNo(), CATCH_MSG + variableName);
     }
 
 }
