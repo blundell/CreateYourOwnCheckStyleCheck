@@ -10,8 +10,7 @@ Contains two projects
 
 How to run checkstyle :
 
- - 
- - 
- - 
- - 
- - 
+ - from a Terminal
+ - go into the TestProject folder
+ - run mvn checkstyle:checkstyle
+ - output will be generated in /target/
