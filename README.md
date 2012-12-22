@@ -1,13 +1,13 @@
 CreateYourOwnCheckStyleCheck
 ============================
 
-Contains two projects
+<h3>Contains two projects</h3>
 
  - **TestProject** contains the poorly written Java code that will have checkstyle ran on it
 
  - **BlundellCheckstyle** contains the custom checkstyle checks that have been written
 
-How it works :
+<h3>How it works</h3>
 
  - **TestProject** uses the maven-checkstyle-plugin
  - the maven-checkstyle-plugin has a dependency on **BlundellCheckStyle**
@@ -16,7 +16,7 @@ How it works :
  - within checkstyle-configuration.xml we declare our custom checks from **BlundellCheckStyle**
 
 
-How to run checkstyle :
+<h3>How to run checkstyle</h3>
 
  - from a Terminal
  - go into the BlundellCheckstyle project
@@ -26,7 +26,7 @@ How to run checkstyle :
  - output will be generated in /target/
 
 
-Current Limitations : 
+<h3>Current Limitations</h3>
 
  - in *checkstyle-configuration.xml* we have to use the full package of the check *com.blundell.checks.AntiHungarian*
  - this can be fixed by declaring a *checkstyle-packages.xml* **this currently doesn't work**
