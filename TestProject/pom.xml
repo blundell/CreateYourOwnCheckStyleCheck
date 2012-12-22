@@ -34,9 +34,6 @@
             <version>1.0</version>
           </dependency>
         </dependencies>
-        <configuration>
-          <packageNamesLocation>properties/fail_checkstyle-packages.xml</packageNamesLocation>
-        </configuration>
       </plugin>
     </plugins>
   </build>

@@ -6,6 +6,6 @@
 <module name="Checker">
   <module name="TreeWalker">
     <!-- Blundell specific checks -->
-    <module name="AntiHungarian" />
+    <module name="com.blundell.checks.AntiHungarian" />
   </module>
 </module>
