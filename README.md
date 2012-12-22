@@ -28,8 +28,12 @@ CreateYourOwnCheckStyleCheck
 
 <h3>Current Limitations</h3>
 
+____
+
  - The HungarianNotationCheck will pick up method variables with the m prefix
    - must be a way to tell checkstyle just to check field variables ( see TokenTypes )  
+ 
+____
 
  - in *checkstyle-configuration.xml* we have to use the full package of the check *com.blundell.checks.AntiHungarian*
  - this can be fixed by declaring a *checkstyle-packages.xml* **this currently doesn't work**
@@ -65,3 +69,5 @@ then your checkstyle-configuration.xml would not need the package:
          <module name="AntiHungarian" />
        </module>
      </module>
+     
+____
