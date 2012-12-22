@@ -8,7 +8,7 @@ public class AntiHungarianCheck extends Check {
     		                                "Don't prefix member variables with 'm'. " +
     		                                "Use your IDE's shiny colors. Culprit was: ";
 
-    private final HungarianStyleDetector detector = new HungarianStyleDetector();
+    private final HungarianNotationMemberDetector detector = new HungarianNotationMemberDetector();
 
     @Override
     public int[] getDefaultTokens() {
@@ -18,7 +18,7 @@ public class AntiHungarianCheck extends Check {
     @Override
     public void visitToken(DetailAST aAST) {
         String variableName = findVariableName(aAST);
-        if (itsAFieldVariable(aAST) && detector.detectsHungarianNotation(variableName)) {
+        if (itsAFieldVariable(aAST) && detector.detectsNotation(variableName)) {
             reportStyleError(aAST, variableName);
         }
     }
