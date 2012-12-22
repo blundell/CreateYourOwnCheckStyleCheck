@@ -15,12 +15,18 @@ public class AntiHungarianCheck extends Check {
 
     @Override
     public void visitToken(DetailAST aAST) {
-       DetailAST identifier = aAST.findFirstToken(TokenTypes.IDENT);
-       String varName = identifier.toString();
+        if (itsAFieldVariable(aAST)) {
+            DetailAST identifier = aAST.findFirstToken(TokenTypes.IDENT);
+            String varName = identifier.toString();
 
-       if(memberVariableIsPrefixedWithTheHungarianNotationForMemberVariable(varName)){
-           log(aAST.getLineNo(), CATCH_MSG + varName);
-       }
+            if (memberVariableIsPrefixedWithTheHungarianNotationForMemberVariable(varName)) {
+                log(aAST.getLineNo(), CATCH_MSG + varName);
+            }
+        }
+    }
+
+    private boolean itsAFieldVariable(DetailAST aAST) {
+        return aAST.getParent().getType() == TokenTypes.OBJBLOCK;
     }
 
     /**
