@@ -19,21 +19,13 @@ CreateYourOwnCheckStyleCheck
 <h3>How to run checkstyle</h3>
 
  - from a Terminal
- - go into the BlundellCheckstyle project
  - run mvn install
  - go into the TestProject folder
  - run mvn checkstyle:checkstyle
- - output will be generated in /target/
+ - open up target/site/checkstyle.html to see style errors
 
 
 <h3>Current Limitations</h3>
-
-____
-
- - The HungarianNotationCheck will pick up method variables with the m prefix
-   - must be a way to tell checkstyle just to check field variables ( see TokenTypes )  
- 
-____
 
  - in *checkstyle-configuration.xml* we have to use the full package of the check *com.blundell.checks.AntiHungarian*
  - this can be fixed by declaring a *checkstyle-packages.xml* **this currently doesn't work**
@@ -69,5 +61,3 @@ then your checkstyle-configuration.xml would not need the package:
          <module name="AntiHungarian" />
        </module>
      </module>
-     
-____
