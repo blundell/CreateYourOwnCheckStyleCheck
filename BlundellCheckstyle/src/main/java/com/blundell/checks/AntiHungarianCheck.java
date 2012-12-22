@@ -17,13 +17,37 @@ public class AntiHungarianCheck extends Check {
     public void visitToken(DetailAST aAST) {
        DetailAST identifier = aAST.findFirstToken(TokenTypes.IDENT);
        String varName = identifier.toString();
-       System.out.println("CHECK");
-       System.out.println(varName);
-       String varNameAsLower = identifier.toString().toLowerCase();
 
-       if(varName.startsWith("m") && !varName.equals(varNameAsLower)){
+       if(memberVariableIsPrefixedWithTheHungarianNotationForMemberVariable(varName)){
            log(aAST.getLineNo(), CATCH_MSG + varName);
        }
+    }
+
+    /**
+     * Someone please replace this with a sexy reg ex
+     * @param varName variable under test
+     * @return true if the variable is prefixed with a lower case m followed by camel case
+     */
+    private boolean memberVariableIsPrefixedWithTheHungarianNotationForMemberVariable(String varName) {
+        return varName.startsWith("m") && isVaguelyCamelCase(varName);
+    }
+
+    private boolean isVaguelyCamelCase(String varName) {
+        if(allLowerCase(varName)){
+            return false;
+        }
+
+        if(varName.length() == 1){
+            return false;
+        }
+
+        return Character.isUpperCase(varName.charAt(1));
+    }
+
+    private boolean allLowerCase(String varName) {
+        String varNameAsLower = varName.toLowerCase();
+
+        return varName.equals(varNameAsLower);
     }
 
 }
