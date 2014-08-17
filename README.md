@@ -33,15 +33,17 @@ CreateYourOwnCheckStyleCheck
 
 *checkstyle-packages.xml* would looks something like this:
 
-     <?xml version="1.0" encoding="UTF-8"?>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 
-     <!DOCTYPE checkstyle-packages PUBLIC
-       "-//Puppy Crawl//DTD Package Names 1.0//EN"
-       "http://www.puppycrawl.com/dtds/packages_1_0.dtd">
+<!DOCTYPE checkstyle-packages PUBLIC
+  "-//Puppy Crawl//DTD Package Names 1.0//EN"
+  "http://www.puppycrawl.com/dtds/packages_1_0.dtd">
 
-     <checkstyle-packages>
-       <package name="com.blundell.checks">
-     </checkstyle-packages>
+<checkstyle-packages>
+  <package name="com.blundell.checks">
+</checkstyle-packages>
+```
      
 and you would add it to the maven-checkstyle-plugin declaration
 
@@ -50,14 +52,16 @@ and you would add it to the maven-checkstyle-plugin declaration
 
 then your checkstyle-configuration.xml would not need the package:
 
-     <?xml version="1.0"?>
-     <!DOCTYPE module PUBLIC
-         "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
-         "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
-     <module name="Checker">
-       <module name="TreeWalker">
-         <!-- Blundell specific checks -->
-         <module name="AntiHungarian" />
-       </module>
-     </module>
+<module name="Checker">
+  <module name="TreeWalker">
+    <!-- Blundell specific checks -->
+    <module name="AntiHungarian" />
+  </module>
+</module>
+```
