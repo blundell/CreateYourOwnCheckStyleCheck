@@ -2,10 +2,8 @@
 <!DOCTYPE module PUBLIC
     "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
     "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
-
 <module name="Checker">
-  <module name="TreeWalker">
-    <!-- Blundell specific checks -->
-    <module name="com.blundell.checks.AntiHungarian" />
-  </module>
+	<module name="TreeWalker">
+		<module name="AntiHungarian" />
+	</module>
 </module>
