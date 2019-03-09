@@ -4,8 +4,9 @@ import com.puppycrawl.tools.checkstyle.api.*;
 
 public class AntiHungarianCheck extends AbstractCheck {
 
-	private static final String CATCH_MSG = "Hungarian notation belongs in the 90's. "
-			+ "Don't prefix member variables with 'm'. " + "Use your IDE's shiny colors. Culprit was: ";
+    private static final String CATCH_MSG = "Hungarian notation belongs in the 90's. " +
+    		                                "Don't prefix member variables with 'm'. " +
+    		                                "Use your IDE's shiny colors. Culprit was: ";
 
 	private final HungarianNotationMemberDetector detector = new HungarianNotationMemberDetector();
 
